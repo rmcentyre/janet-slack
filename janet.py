@@ -6,13 +6,13 @@ import dotenv
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 dotenv.load_dotenv(dotenv_path)
 
-VERIFICATION_TOKEN = os.environ['VERIFICATION_TOKEN']
+VERIFICATION_TOKEN = os.getenv('VERIFICATION_TOKEN', 'sesame')
 
 app = Flask(__name__)
 
 
-def valid(request):
-    return request.form['token'] == VERIFICATION_TOKEN
+def valid(req):
+    return req.form['token'] == VERIFICATION_TOKEN
 
 
 def say(response, image_url=None):
