@@ -10,8 +10,6 @@ after_success:
   - coverage report
 before_deploy:
   - openssl aes-256-cbc -K $encrypted_d7007fee4682_key -iv $encrypted_d7007fee4682_iv -in key.enc -out key -d
-  on:
-    branch: release
 deploy:
   provider: script
   script: bash scripts/deploy.sh
