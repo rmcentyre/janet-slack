@@ -42,7 +42,20 @@ class Monster(object):
         :return: JSON of quest data
         """
 
-        # TODO: Build the function
+        table = self.tables[1]
+        data = []
+
+        for row in table.children:
+            if row == '\n':
+                pass
+            else:
+                for cell in row.contents:
+                    if cell == '\n':
+                        pass
+                    else:
+                        print(cell)
+
+        # TODO: Figure out way to reliably deal with all the \n chars and get data from table
 
         pass
 
