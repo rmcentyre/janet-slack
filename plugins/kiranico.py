@@ -2,17 +2,19 @@ import re
 
 import requests
 from bs4 import BeautifulSoup
+import pandas as pd
 
 from . import constants as c
 
 
 class Monster(object):
+
     def __init__(self, monster_name):
         self.page = requests.get(
             f'{c.BASE_URL}/monster/{monster_name.lower()}'
         ).content  # TODO: Add check if monster_name is valid
 
-        soup = BeautifulSoup(self.page, 'lxml')
+        soup = BeautifulSoup(self.page, 'html.parser')
 
         self.tables = soup.findAll('table')
 
@@ -25,11 +27,11 @@ class Monster(object):
         table = self.tables[0]
         data = []
 
-        for str in table.stripped_strings:
+        for string in table.stripped_strings:
             quest = {
-                'Type': str[str.find('[')+1 : str.find(']')].strip(),
-                'Stars': re.search(r'\d', str).group(),
-                'Name': str[str.find('★')+1:].strip()
+                'Type': string[string.find('[')+1 : string.find(']')].strip(),
+                'Stars': re.search(r'\d', string).group(),
+                'Name': string[string.find('★')+1:].strip()
             }
 
             data.append(quest)
@@ -42,22 +44,18 @@ class Monster(object):
         :return: JSON of quest data
         """
 
+        element_columns = {'Fir': 'Fire', 'Wat': 'Water', 'Thn': 'Thunder', 'Ice': 'Ice', 'Drg': 'Dragon'}
+        # status_columns = {'Poison': 'Poison', 'Sleep': 'Sleep', 'Paralysis': 'Paralysis', 'Blast': 'Blast', 'Stun': 'Stun'}
+        status_columns = {'Stun': 'Stun'}  # other status affects aren't listed
+
         table = self.tables[1]
-        data = []
+        data = pd.read_html(str(table), skiprows=1)[0]
+        element_data = data[list(element_columns.keys())].rename(columns=element_columns)
+        element_data = element_data.sum()
+        status_data = data[list(status_columns.keys())].rename(columns=status_columns)
+        status_data = status_data.sum()
 
-        for row in table.children:
-            if row == '\n':
-                pass
-            else:
-                for cell in row.contents:
-                    if cell == '\n':
-                        pass
-                    else:
-                        print(cell)
-
-        # TODO: Figure out way to reliably deal with all the \n chars and get data from table
-
-        pass
+        return {'Element Weaknesses': element_data.to_dict(), 'Status Weaknesses': status_data.to_dict()}
 
     def lr_loot(self):
         """

@@ -1,1 +1,0 @@
-from .kiranico import Monster
