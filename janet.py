@@ -1,5 +1,6 @@
 
 from flask import Flask, jsonify, request
+from datetime import date
 import os
 import dotenv
 
@@ -44,6 +45,24 @@ def janet():
 def hello_dinks():
     if valid(request):
         return say("'sup, _dinks_", "https://78.media.tumblr.com/8751842a9a7ba74524cb06e498ca6c1d/tumblr_ok25wy412i1udh64ho4_500.gif")
+
+
+@app.route("/bot/atl", methods=['POST'])
+def russ_travel():
+    if valid(request):
+        d0 = date.today()
+        d1 = date(2019, 6, 13)
+        delta = d1 - d0
+        if delta.days > 0:
+            return say(
+                f'{delta.days} days until Russ moves back!',
+                'https://media.giphy.com/media/xULW8poAH4m1KBQr1C/giphy.gif'
+            )
+        else:
+            return say(
+                'Russ is already back!',
+                'https://media.giphy.com/media/xUOxeRRkTYdQJfyy2Y/giphy.gif'
+            )
 
 
 if __name__ == "__main__":
