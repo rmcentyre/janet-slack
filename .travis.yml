@@ -1,21 +1,16 @@
 language: python
 python:
-  - '3.6'
+- '3.6'
 install:
-  - pip install -r requirements.txt
-  - pip install coverage
+- pip install -r requirements.txt
+- pip install coverage
 script:
-  - coverage run -m unittest
+- coverage run -m unittest
 after_success:
-  - coverage report
+- coverage report
 before_deploy:
-  - openssl aes-256-cbc -K $encrypted_d7007fee4682_key -iv $encrypted_d7007fee4682_iv -in key.enc -out key -d
-deploy:
-  skip_cleanup: true
-  provider: script
-  script: bash scripts/deploy.sh
-  on:
-    branch: release
+- openssl aes-256-cbc -K $encrypted_d7007fee4682_key -iv $encrypted_d7007fee4682_iv
+  -in key.enc -out key -d
 deploy:
   skip_cleanup: true
   provider: script
