@@ -17,12 +17,6 @@ def no_humans():
     return "Warning: Not for human consumption!"
 
 
-@app.route("/bot/hello", methods=['POST'])
-def hello_world():
-    if valid(request):
-        return say("Hello, world!")
-
-
 @app.route("/bot/janet", methods=['POST'])
 def janet():
     if valid(request):
