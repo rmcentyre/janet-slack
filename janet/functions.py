@@ -14,4 +14,5 @@ def say(response, image_url=None):
 
 
 def valid(req):
+    # TODO: Switch to secrets
     return req.form['token'] == VERIFICATION_TOKEN

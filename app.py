@@ -16,13 +16,21 @@ app = Flask(__name__)
 @app.route("/bot/janet", methods=['POST'])
 def janet():
     if valid(request):
-        return say("Hi, there!", "http://78.media.tumblr.com/daf862b49b82e49a47354b14c5143363/tumblr_oefwev7pLA1vvi3bvo8_250.gif")
+        return say(
+            "Hi, there!",
+            "http://78.media.tumblr.com/daf862b49b82e49a47354b14c5143363/"
+            "tumblr_oefwev7pLA1vvi3bvo8_250.gif"
+        )
 
 
 @app.route("/bot/badjanet", methods=['POST'])
 def hello_dinks():
     if valid(request):
-        return say("'sup, _dinks_", "https://78.media.tumblr.com/8751842a9a7ba74524cb06e498ca6c1d/tumblr_ok25wy412i1udh64ho4_500.gif")
+        return say(
+            "'sup, _dinks_",
+            "https://78.media.tumblr.com/8751842a9a7ba74524cb06e498ca6c1d/"
+            "tumblr_ok25wy412i1udh64ho4_500.gif"
+        )
 
 
 @app.route("/bot/atl", methods=['POST'])
