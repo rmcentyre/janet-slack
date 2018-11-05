@@ -1,27 +1,15 @@
 
-from flask import Flask, jsonify, request
+from flask import Flask, request
 from datetime import date
 import os
 import dotenv
 
+from janet.functions import say, valid
+
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 dotenv.load_dotenv(dotenv_path)
 
-VERIFICATION_TOKEN = os.getenv('VERIFICATION_TOKEN', 'sesame')
-
 app = Flask(__name__)
-
-
-def valid(req):
-    return req.form['token'] == VERIFICATION_TOKEN
-
-
-def say(response, image_url=None):
-    payload = {"attachments": [{"pretext": response}]}
-    if image_url is not None:
-        payload["attachments"][0]["image_url"] = image_url
-    json = jsonify(payload)
-    return json
 
 
 @app.route("/")
