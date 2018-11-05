@@ -13,11 +13,6 @@ dotenv.load_dotenv(dotenv_path)
 app = Flask(__name__)
 
 
-@app.route("/")
-def no_humans():
-    return "Warning: Not for human consumption!"
-
-
 @app.route("/bot/janet", methods=['POST'])
 def janet():
     if valid(request):
