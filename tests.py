@@ -1,11 +1,11 @@
 
 import unittest
-import janet
+import app
 
 
 class BasicFullTest(unittest.TestCase):
     def setUp(self):
-        self.app = janet.app.test_client()
+        self.app = app.app.test_client()
         self.app.testing = True
 
     def test_trivial(self):

@@ -11,4 +11,4 @@ PROJECT_PATH = os.getenv('PROJECT_PATH', os.curdir)
 if PROJECT_PATH not in sys.path:
     sys.path.append(PROJECT_PATH)
 
-from janet import app as application
+from app import app as application
