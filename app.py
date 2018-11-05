@@ -15,7 +15,7 @@ app = Flask(__name__)
 @app.route("/bot/janet", methods=['POST'])
 def janet():
     if valid(request):
-        text = request.form['text']
+        text = request.form.get('text', 'none')
         if text.lower() == 'atl':
             response = russ_travel()
         else:

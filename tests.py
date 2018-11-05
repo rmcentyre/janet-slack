@@ -9,14 +9,23 @@ class BasicFullTest(unittest.TestCase):
         self.app.testing = True
 
     def test_trivial(self):
-        response = self.app.get('/')
-        assert b"Warning: Not for human consumption!" in response.data
-
-    def test_hello_world(self):
-        response = self.app.post("/bot/hello", data=dict(
+        response = self.app.post('/bot/janet', data=dict(
             token='sesame'
         ))
-        assert b"Hello, world!" in response.data
+        assert b"Hi, there!" in response.data
+
+    def test_badjanet(self):
+        response = self.app.post('/bot/badjanet', data=dict(
+            token='sesame'
+        ))
+        assert b'sup, _dinks_' in response.data
+
+    def test_atl(self):
+        response = self.app.post("/bot/janet", data=dict(
+            token='sesame',
+            text='atl'
+        ))
+        assert b"Russ" in response.data
 
     def tearDown(self):
         pass
