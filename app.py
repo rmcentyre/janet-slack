@@ -4,7 +4,7 @@ from datetime import date
 import dotenv
 from flask import Flask, request
 
-from janet.functions import say, valid, russ_travel
+from common.functions import say, valid, russ_travel
 
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 dotenv.load_dotenv(dotenv_path)
@@ -12,7 +12,7 @@ dotenv.load_dotenv(dotenv_path)
 app = Flask(__name__)
 
 
-@app.route("/bot/janet", methods=['POST'])
+@app.route("/bot/common", methods=['POST'])
 def janet():
     if valid(request):
         text = request.form.get('text', 'none')

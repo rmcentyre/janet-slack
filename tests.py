@@ -9,7 +9,7 @@ class BasicFullTest(unittest.TestCase):
         self.app.testing = True
 
     def test_trivial(self):
-        response = self.app.post('/bot/janet', data=dict(
+        response = self.app.post('/bot/common', data=dict(
             token='sesame'
         ))
         assert b"Hi, there!" in response.data
@@ -21,7 +21,7 @@ class BasicFullTest(unittest.TestCase):
         assert b'sup, _dinks_' in response.data
 
     def test_atl(self):
-        response = self.app.post("/bot/janet", data=dict(
+        response = self.app.post("/bot/common", data=dict(
             token='sesame',
             text='atl'
         ))
