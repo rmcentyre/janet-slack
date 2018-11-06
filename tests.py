@@ -1,15 +1,16 @@
 
 import unittest
-import app
+from app import app
 
 
 class BasicFullTest(unittest.TestCase):
     def setUp(self):
-        self.app = app.app.test_client()
+        self.app = app.test_client()
         self.app.testing = True
+        # self.api = api
 
     def test_trivial(self):
-        response = self.app.post('/bot/common', data=dict(
+        response = self.app.post('/bot/janet', data=dict(
             token='sesame'
         ))
         assert b"Hi, there!" in response.data
@@ -21,7 +22,7 @@ class BasicFullTest(unittest.TestCase):
         assert b'sup, _dinks_' in response.data
 
     def test_atl(self):
-        response = self.app.post("/bot/common", data=dict(
+        response = self.app.post("/bot/janet", data=dict(
             token='sesame',
             text='atl'
         ))
