@@ -6,13 +6,17 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-click = "==6.7"
-itsdangerous = "==0.24"
+aniso8601 = "==4.0.1"
+click = "==7.0"
+itsdangerous = "==1.1.0"
 python-dotenv = "==0.7.1"
-Flask = "==0.12.2"
+pytz = "==2018.7"
+six = "==1.11.0"
+Flask = "==1.0.2"
+Flask-RESTful = "==0.3.6"
 Jinja2 = "==2.10"
-MarkupSafe = "==1.0"
+MarkupSafe = "==1.1.0"
 Werkzeug = "==0.14.1"
 
 [requires]
-python_version = "3"
+python_version = "3.6"
