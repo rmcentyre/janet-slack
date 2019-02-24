@@ -11,7 +11,7 @@ esac
 
 scp -P 15010 -o StrictHostKeyChecking=no -r app.py janet.wsgi ./common ./resources Pipf* travis@slack.rmcentyre.com:${scp_dest}
 
-ssh -T -P 15010 -o StrictHostKeyChecking-no travis@slack.rmcentyre.com << EOF
+ssh -T -p 15010 -o StrictHostKeyChecking=no travis@slack.rmcentyre.com << EOF
     cd ${scp_dest}
     pipenv sync
 EOF
