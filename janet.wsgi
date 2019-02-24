@@ -3,6 +3,8 @@ import os
 import sys
 import dotenv
 
+sys.dont_write_bytecode = True
+
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 dotenv.load_dotenv(dotenv_path)
 
