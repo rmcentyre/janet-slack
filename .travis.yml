@@ -14,6 +14,11 @@ before_deploy:
 deploy:
   - provider: script
     skip_cleanup: true
+    script: bash scripts/push.sh
+    on:
+      branch: dev
+  - provider: script
+    skip_cleanup: true
     script: bash scripts/deploy.sh staging
     on:
       branch: master
