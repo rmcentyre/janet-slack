@@ -1,6 +1,5 @@
 
 import os
-from datetime import date
 import time
 import hashlib
 import hmac
@@ -62,17 +61,9 @@ def slack_request_validation(slack_signature, timestamp, body, enforce_timestamp
         return False
 
 
-def russ_travel():
-    d0 = date.today()
-    d1 = date(2019, 7, 1)
-    delta = d1 - d0
-    if delta.days > 0:
-        return say(
-            f'{delta.days} days until Russ moves back!',
-            'https://media.giphy.com/media/xULW8poAH4m1KBQr1C/giphy.gif'
-        )
-    else:
-        return say(
-            'Russ is already back!',
-            'https://media.giphy.com/media/xUOxeRRkTYdQJfyy2Y/giphy.gif'
-        )
+def bad():
+    say(
+        "Nope.",
+        "https://66.media.tumblr.com/868e5b2061c69445f2f634c51a2764f8/"
+        "tumblr_p36zgwY6oS1virtjeo3_250.gif"
+    )

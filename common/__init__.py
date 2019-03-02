@@ -1,1 +1,1 @@
-from .functions import say, valid, russ_travel
+from .functions import say, slack_request_validation
